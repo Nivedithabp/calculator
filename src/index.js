@@ -9,28 +9,27 @@
 // app.listeners(port);
 const express = require('express');
 const cors = require('cors');
+const {add} = require("./arithmetica");
+const path = require('path');
+
 const app = express();
-const port = 3000; // or whichever port you want to use
-
 app.use(cors());
-app.use(express.json());
+const port = 3000;
 
-// Serve static files from the "public" directory
-app.use(express.static('public'));
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Now, you don't need to manually define a route for "index.html"
-// Express will automatically serve "index.html" from the "public" folder when the base URL is accessed
+// Define a route for the root path
+app.get('/', (req, res) => {
+    res.send('Arithmetic service');
+});
+app.get('/add/:n/:m', (req, res) => {
+    let n = Number(req.params.n);
+    let m = Number(req.params.m);
+    let sum = add (n,m);
+    res.json(sum);
+});
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on the  http://localhost:${port}`);
 });
-
-app.get('/test', (req, res) => {
-    res.send('Hello World! test');
-  });
-  
-
-app.get('/add/:n/:m',(req,res)=>{
-    res.json(Number(req.params.n) + Number(req.params.m));
-});
-

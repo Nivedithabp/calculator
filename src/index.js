@@ -9,7 +9,7 @@
 // app.listeners(port);
 const express = require('express');
 const cors = require('cors');
-const {add} = require("./arithmetica");
+const {add , sub , product , div} = require("./arithmetica");
 const path = require('path');
 
 const app = express();
@@ -27,6 +27,27 @@ app.get('/add/:n/:m', (req, res) => {
     let n = Number(req.params.n);
     let m = Number(req.params.m);
     let sum = add (n,m);
+    res.json(sum);
+});
+
+app.get('/sub/:n/:m', (req, res) => {
+    let n = Number(req.params.n);
+    let m = Number(req.params.m);
+    let sum = sub (n,m);
+    res.json(sum);
+});
+
+app.get('/product/:n/:m', (req, res) => {
+    let n = Number(req.params.n);
+    let m = Number(req.params.m);
+    let sum = product (n,m);
+    res.json(sum);
+});
+
+app.get('/div/:n/:m', (req, res) => {
+    let n = Number(req.params.n);
+    let m = Number(req.params.m);
+    let sum = div (n,m);
     res.json(sum);
 });
 

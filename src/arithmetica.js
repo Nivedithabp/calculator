@@ -7,11 +7,11 @@ function sub(a, b) {
 }
 
 function product(a, b) {
-    return a - b;
+    return a * b;
 }
 
 function div(a, b) {
-    return a - b;
+    return a / b;
 }
 
 module.exports = { add ,sub , product , div};

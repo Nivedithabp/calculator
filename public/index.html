@@ -17,12 +17,36 @@
 <body>
     <div class="container">
         <section class="section">
-            <h2>Arithmetic</h2>
-            <input id="operand1"/>
-            <label>+</label>
-            <input id="operand2"/>
-            <button onclick="add()">=</button>
-            <label id="sum"></label>
+            <div>
+                <h2>Arithmetic</h2>
+                <input id="operand1"/>
+                <label>+</label>
+                <input id="operand2"/>
+                <button onclick="add()">=</button>
+                <label id="sum"></label>
+            </div>
+            <div>
+                <input id="op1"/>
+                <label>-</label>
+                <input id="op2"/>
+                <button onclick="sub()">=</button>
+                <label id="sub"></label>
+            </div>
+            <div>
+                <input id="num1"/>
+                <label>X</label>
+                <input id="num2"/>
+                <button onclick="product()">=</button>
+                <label id="product"></label>
+            </div>
+            <div>
+                <input id="n1"/>
+                <label>/</label>
+                <input id="n2"/>
+                <button onclick="div()">=</button>
+                <label id="div"></label>
+            </div>
+            
         </section>
         <section class="section">
             <h2>Prime Check</h2>
@@ -48,6 +72,33 @@
             const response  = await fetch("http://localhost:3000/add/" + n + "/" + m);
             let sum = await response.json();
             document.getElementById("sum").innerText = sum;
+        }
+        async function sub() {
+            let operand1Input = document.getElementById("op1");
+            let operand2Input = document.getElementById("op2");
+            let n = operand1Input.value;
+            let m = operand2Input.value;
+            const response  = await fetch("http://localhost:3000/sub/" + n + "/" + m);
+            let sum = await response.json();
+            document.getElementById("sub").innerText = sum;
+        }
+        async function product() {
+            let operand1Input = document.getElementById("num1");
+            let operand2Input = document.getElementById("num2");
+            let n = operand1Input.value;
+            let m = operand2Input.value;
+            const response  = await fetch("http://localhost:3000/product/" + n + "/" + m);
+            let sum = await response.json();
+            document.getElementById("product").innerText = sum;
+        }
+        async function div() {
+            let operand1Input = document.getElementById("n1");
+            let operand2Input = document.getElementById("n2");
+            let n = operand1Input.value;
+            let m = operand2Input.value;
+            const response  = await fetch("http://localhost:3000/div/" + n + "/" + m);
+            let sum = await response.json();
+            document.getElementById("div").innerText = sum;
         }
         async function primes() {
             let num = document.getElementById("num");

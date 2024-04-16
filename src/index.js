@@ -11,17 +11,22 @@ const express = require('express');
 const cors = require('cors');
 const {add , sub , product , div} = require("./arithmetica");
 const path = require('path');
+require('dotenv').config()
 
 const app = express();
 app.use(cors());
-const port = 3000;
+if(!process.env.PORT){
+    throw new Error ('Please specify the port number for the HTTP server in env variable PORT.');
+}
+
+const port = process.env.PORT;
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Define a route for the root path
 app.get('/', (req, res) => {
-    res.send('Arithmetic service');
+    res.send('Arithmetic service - Last updated on 3/5/2024');
 });
 app.get('/add/:n/:m', (req, res) => {
     let n = Number(req.params.n);
